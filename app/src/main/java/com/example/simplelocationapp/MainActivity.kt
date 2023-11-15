@@ -37,7 +37,6 @@ class MainActivity : ComponentActivity() {
     // 定义GPS经纬度的状态
     private var latitudeGPS = mutableStateOf(0.0)
     private var longitudeGPS = mutableStateOf(0.0)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val REQUEST_CODE_LOCATION = 1001
@@ -70,7 +69,6 @@ class MainActivity : ComponentActivity() {
                 latitudeGPS.value = location.latitude
                 longitudeGPS.value = location.longitude
                 // 在这里使用纬度和经度更新用户界面
-
             }
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
             override fun onProviderEnabled(provider: String) {}
@@ -99,7 +97,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        // 停止定位
         locationClient.stop()
         // 注销监听器
         locationClient.unRegisterLocationListener(locationListener)
@@ -147,7 +144,6 @@ fun MainContent(latitudeBaidu: State<Double>, longitudeBaidu: State<Double>, lat
     Column {
         // 显示定位信息
         ShowLocation(latitudeGPS, longitudeGPS)  // 假设 latitude 和 longitude 是提供给这个函数的状态
-
         // 显示问候语
         Greeting(latitudeBaidu,longitudeBaidu)
     }
